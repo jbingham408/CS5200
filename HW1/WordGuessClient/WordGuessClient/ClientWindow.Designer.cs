@@ -183,7 +183,6 @@
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(163, 22);
             this.addressTextBox.TabIndex = 0;
-            this.addressTextBox.Text = "te";
             // 
             // NewGameBtn
             // 
