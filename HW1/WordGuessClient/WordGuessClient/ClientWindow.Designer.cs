@@ -1,6 +1,6 @@
 ﻿namespace WordGuessClient
 {
-    partial class WordGuessClient
+    public partial class WordGuessClient
     {
         /// <summary>
         /// Required designer variable.
@@ -158,6 +158,7 @@
             this.portTextBox.Name = "portTextBox";
             this.portTextBox.Size = new System.Drawing.Size(163, 22);
             this.portTextBox.TabIndex = 3;
+            this.portTextBox.Text = "12001";
             // 
             // portLabel
             // 
@@ -183,6 +184,7 @@
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(163, 22);
             this.addressTextBox.TabIndex = 0;
+            this.addressTextBox.Text = "127.0.0.1";
             // 
             // NewGameBtn
             // 
@@ -192,6 +194,7 @@
             this.NewGameBtn.TabIndex = 2;
             this.NewGameBtn.Text = "New Game";
             this.NewGameBtn.UseVisualStyleBackColor = true;
+            this.NewGameBtn.Click += new System.EventHandler(this.NewGameBtn_Click);
             // 
             // GamePanel
             // 
@@ -286,6 +289,7 @@
             this.exitBtn.TabIndex = 4;
             this.exitBtn.Text = "Quit";
             this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // WordGuessClient
             // 

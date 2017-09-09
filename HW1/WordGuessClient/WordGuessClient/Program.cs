@@ -22,7 +22,6 @@ namespace WordGuessClient
         {
             XmlConfigurator.Configure();
             logger.Info("Starting Client");
-            logger.Debug("test");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new WordGuessClient());
