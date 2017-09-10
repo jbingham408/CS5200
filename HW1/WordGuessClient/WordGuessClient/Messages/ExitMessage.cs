@@ -8,5 +8,7 @@ namespace WordGuessClient
 {
     class ExitMessage
     {
+        private short messageType { get; set; }
+        private short gameID { get; set; }
     }
 }

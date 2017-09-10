@@ -8,5 +8,7 @@ namespace WordGuessClient
 {
     class GetHintMessage
     {
+        private short messageType { get; set; }
+        private short gameID { get; set; }
     }
 }

@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Messages\AckMessage.cs" />
+    <Compile Include="Messages\AnswerMessage.cs" />
     <Compile Include="ClientWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,7 +57,15 @@
       <DependentUpon>ClientWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="EndPoint.cs" />
-    <Compile Include="Message.cs" />
+    <Compile Include="Messages\ErrorMessage.cs" />
+    <Compile Include="Messages\ExitMessage.cs" />
+    <Compile Include="Messages\GameDefMessage.cs" />
+    <Compile Include="Messages\GetHintMessage.cs" />
+    <Compile Include="Messages\GuessMessage.cs" />
+    <Compile Include="Messages\HeartBeatMessage.cs" />
+    <Compile Include="Messages\HintMessage.cs" />
+    <Compile Include="Messages\Message.cs" />
+    <Compile Include="Messages\NewGameMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receiver.cs" />
@@ -72,7 +82,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
+    <None Include="Messages\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -8,5 +8,7 @@ namespace WordGuessClient
 {
     class AckMessage
     {
+        private short messageType { get; set; }
+        private short gameID { get; set; }
     }
 }

@@ -8,5 +8,10 @@ namespace WordGuessClient
 {
     class NewGameMessage
     {
+        private short messageType { get; set; }
+        private string aNum { get; set; }
+        private string lastName { get; set; }
+        private string firstName { get; set; }
+        private string alias { get; set; }
     }
 }
