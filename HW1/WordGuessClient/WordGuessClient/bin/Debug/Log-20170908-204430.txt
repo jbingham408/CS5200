@@ -1,6 +1,0 @@
-2017-09-08 20:44:30,963 [1] INFO  WordGuessClient.Program - Starting Client
-2017-09-08 20:44:32,572 [3] DEBUG WordGuessClient.Receiver - Entering Receive
-2017-09-08 20:44:32,573 [1] DEBUG WordGuessClient.Sender - 127.0.0.1:12001
-2017-09-08 20:44:32,579 [1] INFO  WordGuessClient.Sender - Sending Message
-2017-09-08 20:44:33,591 [3] DEBUG WordGuessClient.Receiver - Leaving Receive
-2017-09-08 20:44:33,591 [3] DEBUG WordGuessClient.Receiver - Entering Receive

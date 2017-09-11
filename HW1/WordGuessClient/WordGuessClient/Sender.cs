@@ -13,21 +13,20 @@ namespace WordGuessClient
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(Sender));
 
-        private readonly UdpClient myUdpSocket;
-
         private WordGuessClient clientForm;
-
+        private static IPEndPoint myEndPoint = new IPEndPoint(IPAddress.Any, 0);
+        private readonly UdpClient myUdpSocket;
         public IPEndPoint server { get; set; }
 
-        public Sender(WordGuessClient c)
+        public Sender(WordGuessClient c, UdpClient udpClient)
         {
             clientForm = c;
+            myUdpSocket = udpClient;
             string address = c.GetAddressText();
             string port = c.GetPortText();
             if (address != null && port != null)
                 server = EndPoint.GetEndPoint(address, port);
             logger.Debug(server);
-            myUdpSocket = new UdpClient(server);
         }
 
         public void SendMessage()
@@ -44,9 +43,10 @@ namespace WordGuessClient
                 };
 
                 byte[] b = message.Encode();
+                logger.Debug(b);
 
                 int bytesSent = myUdpSocket.Send(b, b.Length, server);
-                logger.Info("Sending Message");
+                logger.InfoFormat("{0} bytes sent out of {1}", bytesSent, b.Length);
             }
         }
     }

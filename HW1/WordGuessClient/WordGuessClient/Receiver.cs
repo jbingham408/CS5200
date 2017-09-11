@@ -15,10 +15,9 @@ namespace WordGuessClient
         private readonly UdpClient myUdpClient;
         public Message message = null;
 
-        public Receiver()
+        public Receiver(UdpClient udpClient)
         {
-            IPEndPoint clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
-            myUdpClient = new UdpClient(clientEndPoint);
+            myUdpClient = udpClient;
             myUdpClient.Client.ReceiveTimeout = 1000;
         }
 
@@ -48,19 +47,22 @@ namespace WordGuessClient
                 }
                 catch(SocketException e)
                 {
+                    logger.Debug("catch");
                     if (e.SocketErrorCode != SocketError.TimedOut)
                         throw;
                 }
 
-                if(b != null)
+                if (b != null)
                 {
-                    endReceive = true;
+                    //endReceive = true;
                     message = Message.Decode(b);
                     if (message != null)
-                        logger.Info("Message Recieved");
+                        logger.Info("Message Successfully Received");
                     else
-                        logger.Info("Message Not Received");
+                        logger.Info("Message Failed to Receive");
                 }
+                else
+                    logger.Debug("No message received");
                 logger.Debug("Leaving Receive");
             }
         }

@@ -47,9 +47,10 @@ namespace WordGuessClient
                 message = new Message();
                 MemoryStream stream = new MemoryStream(b);
                 message.messageType = DecodeShort(stream);
-                message.gameID = DecodeShort(stream);
-                message.hint = DecodeString(stream);
-                message.definition = DecodeString(stream);
+                logger.InfoFormat("Message Type: {0}", message.messageType);
+                //message.gameID = DecodeShort(stream);
+                //message.hint = DecodeString(stream);
+                //message.definition = DecodeString(stream);
             }
 
             return message;
