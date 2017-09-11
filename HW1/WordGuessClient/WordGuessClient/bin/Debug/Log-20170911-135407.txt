@@ -1,0 +1,22 @@
+2017-09-11 13:54:07,338 [1] INFO  WordGuessClient.Program - Starting Client
+2017-09-11 13:54:13,257 [1] DEBUG WordGuessClient.Sender - 127.0.0.1:12001
+2017-09-11 13:54:13,261 [1] DEBUG WordGuessClient.Sender - Byte[] {0, 1, 0, 6, 0, 107, 0, 106, 0, 110, 0, 2, 0, 106, 0, 2, 0, 100, 0, 6, 0, 108, 0, 107, 0, 109}
+2017-09-11 13:54:13,262 [1] INFO  WordGuessClient.Sender - 26 bytes sent out of 26
+2017-09-11 13:54:13,263 [1] DEBUG WordGuessClient.Receiver - Entering Receive
+2017-09-11 13:54:13,274 [1] INFO  WordGuessClient.GameDefMessage - Game Id: 3
+2017-09-11 13:54:13,276 [1] INFO  WordGuessClient.GameDefMessage - Hint: ____
+2017-09-11 13:54:13,299 [1] INFO  WordGuessClient.GameDefMessage - Definition: a young sow
+2017-09-11 13:54:13,300 [1] INFO  WordGuessClient.GameDefMessage - Message Type: Game Def
+2017-09-11 13:54:13,301 [1] INFO  WordGuessClient.GameDefMessage - Fill text
+2017-09-11 13:54:13,308 [1] DEBUG WordGuessClient.Receiver - Leaving Receive
+2017-09-11 13:54:13,334 [3] DEBUG WordGuessClient.Receiver - Entering Receive
+2017-09-11 13:54:13,335 [3] DEBUG WordGuessClient.Receiver - Leaving Receive
+2017-09-11 13:54:13,335 [3] DEBUG WordGuessClient.Receiver - Entering Receive
+2017-09-11 13:54:13,838 [3] DEBUG WordGuessClient.Receiver - Leaving Receive
+2017-09-11 13:54:13,838 [3] DEBUG WordGuessClient.Receiver - Entering Receive
+2017-09-11 13:54:14,354 [3] DEBUG WordGuessClient.Receiver - Leaving Receive
+2017-09-11 13:54:14,354 [3] DEBUG WordGuessClient.Receiver - Entering Receive
+2017-09-11 13:54:14,864 [3] DEBUG WordGuessClient.Receiver - Leaving Receive
+2017-09-11 13:54:14,864 [3] DEBUG WordGuessClient.Receiver - Entering Receive
+2017-09-11 13:54:15,377 [3] DEBUG WordGuessClient.Receiver - Leaving Receive
+2017-09-11 13:54:15,377 [3] DEBUG WordGuessClient.Receiver - Entering Receive

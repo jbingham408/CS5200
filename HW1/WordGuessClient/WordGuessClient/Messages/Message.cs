@@ -9,52 +9,13 @@ using log4net;
 
 namespace WordGuessClient
 {
-    public class Message
+    public abstract class Message
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(Message));
 
-        public short messageType { get; set; }
-        public string aNum { get; set; }
-        public string lastName { get; set; }
-        public string firstName { get; set; }
-        public string alias { get; set; }
-        public short gameID { get; set; }
-        public string hint { get; set; }
-        public string definition { get; set; }
 
-        public byte[] Encode()
-        {
-            logger.Debug("Encoding message");
+        public abstract byte[] Encode();
 
-            MemoryStream stream = new MemoryStream();
-
-            EncodeShort(stream, messageType);
-            EncodeString(stream, aNum);
-            EncodeString(stream, lastName);
-            EncodeString(stream, firstName);
-            EncodeString(stream, alias);
-
-            return stream.ToArray();
-        }
-
-        public static Message Decode(byte[] b)
-        {
-            logger.Debug("Decoding message");
-
-            Message message = null;
-            if(b != null)
-            {
-                message = new Message();
-                MemoryStream stream = new MemoryStream(b);
-                message.messageType = DecodeShort(stream);
-                logger.InfoFormat("Message Type: {0}", message.messageType);
-                //message.gameID = DecodeShort(stream);
-                //message.hint = DecodeString(stream);
-                //message.definition = DecodeString(stream);
-            }
-
-            return message;
-        }
+        public abstract Message Decode(MemoryStream stream);
 
         private static void EncodeShort(MemoryStream stream, short s)
         {

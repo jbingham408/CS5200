@@ -13,14 +13,14 @@ namespace WordGuessClient
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(Sender));
 
-        private WordGuessClient clientForm;
+        private WordGuessClient client;
         private static IPEndPoint myEndPoint = new IPEndPoint(IPAddress.Any, 0);
         private readonly UdpClient myUdpSocket;
         public IPEndPoint server { get; set; }
 
         public Sender(WordGuessClient c, UdpClient udpClient)
         {
-            clientForm = c;
+            client = c;
             myUdpSocket = udpClient;
             string address = c.GetAddressText();
             string port = c.GetPortText();
@@ -29,18 +29,13 @@ namespace WordGuessClient
             logger.Debug(server);
         }
 
-        public void SendMessage()
+        public void SendMessage(short messageType)
         {
+            Message message = null;
             if (server != null)
             {
-                Message message = new Message()
-                {
-                    messageType = 1,
-                    aNum = "A001",
-                    lastName = "Bingham",
-                    firstName = "Jason",
-                    alias = "Test"
-                };
+                if (messageType == 1)
+                    message = new NewGameMessage(client);
 
                 byte[] b = message.Encode();
                 logger.Debug(b);

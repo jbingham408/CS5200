@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using log4net;
 using System.Net;
 using System.Net.Sockets;
+using System.IO;
 
 namespace WordGuessClient
 {
@@ -14,9 +15,11 @@ namespace WordGuessClient
         private static readonly ILog logger = LogManager.GetLogger(typeof(Receiver));
         private readonly UdpClient myUdpClient;
         public Message message = null;
+        private WordGuessClient client;
 
-        public Receiver(UdpClient udpClient)
+        public Receiver(UdpClient udpClient, WordGuessClient c)
         {
+            client = c;
             myUdpClient = udpClient;
             myUdpClient.Client.ReceiveTimeout = 1000;
         }
@@ -54,17 +57,31 @@ namespace WordGuessClient
 
                 if (b != null)
                 {
-                    //endReceive = true;
-                    message = Message.Decode(b);
-                    if (message != null)
-                        logger.Info("Message Successfully Received");
-                    else
-                        logger.Info("Message Failed to Receive");
+                    MemoryStream stream = new MemoryStream(b);
+                    short messageType = GetMessageType(stream);
+
+                    switch (messageType)
+                    {
+                        case (short)2:
+                            message = new GameDefMessage(client);
+                            message.Decode(stream);
+                            endReceive = true;
+                            break;
+                    }
                 }
                 else
                     logger.Debug("No message received");
                 logger.Debug("Leaving Receive");
             }
+        }
+
+        private static short GetMessageType(MemoryStream stream)
+        {
+            byte[] b = new byte[2];
+            int numOfBytes = stream.Read(b, 0, b.Length);
+            if (numOfBytes != b.Length)
+                throw new ApplicationException("Decode Short Failed");
+            return IPAddress.NetworkToHostOrder(BitConverter.ToInt16(b, 0));
         }
     }
 }

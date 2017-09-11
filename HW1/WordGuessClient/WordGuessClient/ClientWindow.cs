@@ -23,9 +23,9 @@ namespace WordGuessClient
         {
             IPEndPoint clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
             myUdpClient = new UdpClient(clientEndPoint);
-            receiveMessage = new Receiver(myUdpClient);
+            receiveMessage = new Receiver(myUdpClient, this);
             receiveThread = new Thread(new ThreadStart(receiveMessage.ReceiveMessage));
-            receiveThread.Start();
+            //receiveThread.Start();
             InitializeComponent();
         }
 
@@ -39,14 +39,47 @@ namespace WordGuessClient
             return portTextBox.Text;
         }
 
+        public string GetANumText()
+        {
+            return aNumTextBox.Text;
+        }
+
+        public string GetLastNameText()
+        {
+            return lastNameTextBox.Text;
+        }
+
+        public string GetFirstNameText()
+        {
+            return firstNameTextBox.Text;
+        }
+
+        public string GetAliasText()
+        {
+            return aliasTextBox.Text;
+        }
+
+        public void SetHintText(string hint)
+        {
+            hintTextBox.Text = hint;
+        }
+
+        public void SetDefTextBox(string definition)
+        {
+            definitionTextBox.Text = definition;
+        }
+
+        public void SetGameIdLabel(short id)
+        {
+            gameIdLabel.Text = id.ToString();
+        }
+
         private void NewGameBtn_Click(object sender, EventArgs e)
         {
-            //if (!receiveThread.IsAlive)
-            //    receiveThread.Start();
-
             Sender sendMessage = new Sender(this, myUdpClient);
-            sendMessage.SendMessage();
-            //receiveMessage.ReceiveMessage();
+            sendMessage.SendMessage(1);
+            receiveMessage.ReceiveMessage();
+            receiveThread.Start();
         }
 
         private void exitBtn_Click(object sender, EventArgs e)

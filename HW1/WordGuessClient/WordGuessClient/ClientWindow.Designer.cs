@@ -53,6 +53,7 @@
             this.guessBtn = new System.Windows.Forms.Button();
             this.hintBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
+            this.gameIdLabel = new System.Windows.Forms.Label();
             this.PlayerInfoGroup.SuspendLayout();
             this.addressGroup.SuspendLayout();
             this.GamePanel.SuspendLayout();
@@ -291,11 +292,20 @@
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
+            // gameIdLabel
+            // 
+            this.gameIdLabel.AutoSize = true;
+            this.gameIdLabel.Location = new System.Drawing.Point(524, 269);
+            this.gameIdLabel.Name = "gameIdLabel";
+            this.gameIdLabel.Size = new System.Drawing.Size(0, 17);
+            this.gameIdLabel.TabIndex = 5;
+            // 
             // WordGuessClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 622);
+            this.Controls.Add(this.gameIdLabel);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.GamePanel);
             this.Controls.Add(this.NewGameBtn);
@@ -310,6 +320,7 @@
             this.GamePanel.ResumeLayout(false);
             this.GamePanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -340,6 +351,7 @@
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.TextBox guessTextbox;
         private System.Windows.Forms.TextBox definitionTextBox;
+        private System.Windows.Forms.Label gameIdLabel;
     }
 }
 
