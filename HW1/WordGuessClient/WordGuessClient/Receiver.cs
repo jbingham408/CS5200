@@ -67,6 +67,12 @@ namespace WordGuessClient
                             gameDefMessage.Decode(stream);
                             endReceive = true;
                             break;
+                        case (short)6:
+                            HintMessage hintMessage = new HintMessage(client);
+                            hintMessage.Decode(stream);
+                            if(hintMessage.GetCorrectGame())
+                                endReceive = true;
+                            break;
                         case (short)8:
                             AckMessage ackMessage = new AckMessage(client);
                             ackMessage.Decode(stream);
@@ -76,7 +82,7 @@ namespace WordGuessClient
                         case (short)10:
                             HeartBeatMessage heartBeat = new HeartBeatMessage(client);
                             heartBeat.Decode(stream);
-                            if(heartBeat.GetCorrectGame())
+                            if (heartBeat.GetCorrectGame())
                             {
                                 Sender sender = new Sender(client, myUdpClient);
                                 sender.SendMessage(8);

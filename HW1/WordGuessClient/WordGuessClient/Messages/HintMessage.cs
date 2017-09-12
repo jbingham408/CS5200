@@ -14,30 +14,38 @@ namespace WordGuessClient
         private short messageType { get; set; }
         private short gameID { get; set; }
         private string hint { get; set; }
+        private bool correctGame = false;
+        private WordGuessClient client;
+        private static readonly ILog logger = LogManager.GetLogger(typeof(HintMessage));
 
-        private static readonly ILog logger = LogManager.GetLogger(typeof(NewGameMessage));
+        public HintMessage(WordGuessClient c)
+        {
+            messageType = 6;
+            client = c;
+            gameID = client.GetGameID();
+        }
         public override byte[] Encode()
         {
-            logger.Debug("Encoding message");
-
-            MemoryStream stream = new MemoryStream();
-
-            return stream.ToArray();
+            throw new NotImplementedException();
         }
 
         public override Message Decode(MemoryStream stream)
         {
             logger.Debug("Decoding message");
 
-            NewGameMessage message = null;
-            //if (b != null)
-            //{
-            //    message = new NewGameMessage(client);
-            //    MemoryStream stream = new MemoryStream(b);
-            //    messageType = DecodeShort(stream);
-            //    logger.InfoFormat("Message Type: {0}", message.messageType);
-            //}
+            HintMessage message = new HintMessage(client);
+            message.gameID = DecodeShort(stream);
+            message.hint = DecodeString(stream);
+            logger.DebugFormat("Hint: {0}", message.hint);
+            logger.DebugFormat("{0}", message.hint);
+            if (message.gameID == this.gameID)
+            {
+                correctGame = true;
+                hint = message.hint;
+            }
+            logger.Info("Message Type: Hint Message");
 
+            fillInHintInformation();
             return message;
         }
 
@@ -76,6 +84,19 @@ namespace WordGuessClient
                 message = Encoding.BigEndianUnicode.GetString(b, 0, b.Length);
             }
             return message;
+        }
+
+        public bool GetCorrectGame()
+        {
+            return correctGame;
+        }
+
+        private void fillInHintInformation()
+        {
+            logger.Info("Fill hint");
+            client.SetHintText(hint);
+            client.SetGuessTextBox(hint);
+            client.Update();
         }
     }
 }

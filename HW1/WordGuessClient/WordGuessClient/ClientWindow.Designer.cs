@@ -54,6 +54,7 @@
             this.hintBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
             this.gameIdLabel = new System.Windows.Forms.Label();
+            this.numOfCharLabel = new System.Windows.Forms.Label();
             this.PlayerInfoGroup.SuspendLayout();
             this.addressGroup.SuspendLayout();
             this.GamePanel.SuspendLayout();
@@ -200,6 +201,7 @@
             // GamePanel
             // 
             this.GamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GamePanel.Controls.Add(this.numOfCharLabel);
             this.GamePanel.Controls.Add(this.guessTextbox);
             this.GamePanel.Controls.Add(this.definitionTextBox);
             this.GamePanel.Controls.Add(this.hintTextBox);
@@ -275,12 +277,13 @@
             // 
             // hintBtn
             // 
-            this.hintBtn.Location = new System.Drawing.Point(445, 30);
+            this.hintBtn.Location = new System.Drawing.Point(445, 74);
             this.hintBtn.Name = "hintBtn";
             this.hintBtn.Size = new System.Drawing.Size(102, 23);
             this.hintBtn.TabIndex = 0;
             this.hintBtn.Text = "Get Hint";
             this.hintBtn.UseVisualStyleBackColor = true;
+            this.hintBtn.Click += new System.EventHandler(this.hintBtn_Click);
             // 
             // exitBtn
             // 
@@ -299,6 +302,14 @@
             this.gameIdLabel.Name = "gameIdLabel";
             this.gameIdLabel.Size = new System.Drawing.Size(0, 17);
             this.gameIdLabel.TabIndex = 5;
+            // 
+            // numOfCharLabel
+            // 
+            this.numOfCharLabel.AutoSize = true;
+            this.numOfCharLabel.Location = new System.Drawing.Point(445, 32);
+            this.numOfCharLabel.Name = "numOfCharLabel";
+            this.numOfCharLabel.Size = new System.Drawing.Size(0, 17);
+            this.numOfCharLabel.TabIndex = 8;
             // 
             // WordGuessClient
             // 
@@ -352,6 +363,7 @@
         private System.Windows.Forms.TextBox guessTextbox;
         private System.Windows.Forms.TextBox definitionTextBox;
         private System.Windows.Forms.Label gameIdLabel;
+        private System.Windows.Forms.Label numOfCharLabel;
     }
 }
 

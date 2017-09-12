@@ -1,0 +1,6 @@
+2017-09-11 21:48:02,566 [1] INFO  WordGuessClient.Program - Starting Client
+2017-09-11 21:48:08,170 [1] DEBUG WordGuessClient.Sender - 127.0.0.1:12001
+2017-09-11 21:48:08,173 [1] INFO  WordGuessClient.Sender - New Game Message Sent
+2017-09-11 21:48:08,174 [1] DEBUG WordGuessClient.Sender - Byte[] {0, 1, 0, 2, 0, 115, 0, 2, 0, 115, 0, 2, 0, 115, 0, 2, 0, 115}
+2017-09-11 21:48:08,175 [1] INFO  WordGuessClient.Sender - 18 bytes sent out of 18
+2017-09-11 21:48:08,176 [1] INFO  WordGuessClient.Receiver - ---Checking for message---

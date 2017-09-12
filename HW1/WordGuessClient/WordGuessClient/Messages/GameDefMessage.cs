@@ -95,6 +95,7 @@ namespace WordGuessClient
             client.SetHintText(hint);
             client.SetDefTextBox(definition);
             client.SetGameIdLabel(gameID);
+            client.SetNumCharLabel((short)hint.Length);
             client.Update();
         }
     }

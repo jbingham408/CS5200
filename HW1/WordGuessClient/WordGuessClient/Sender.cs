@@ -40,6 +40,10 @@ namespace WordGuessClient
                         message = new NewGameMessage(client);
                         logger.Info("New Game Message Sent");
                         break;
+                    case (short)5:
+                        message = new GetHintMessage(client);
+                        logger.Info("Get Hint Message");
+                        break;
                     case (short)7:
                         message = new ExitMessage(client);
                         logger.Info("Exit Message Sent");

@@ -13,31 +13,30 @@ namespace WordGuessClient
     {
         private short messageType { get; set; }
         private short gameID { get; set; }
-
+        private WordGuessClient client;
         private static readonly ILog logger = LogManager.GetLogger(typeof(GetHintMessage));
+
+        public GetHintMessage(WordGuessClient c)
+        {
+            messageType = 5;
+            client = c;
+            gameID = client.GetGameID();
+        }
         public override byte[] Encode()
         {
-            logger.Debug("Encoding message");
+            logger.Debug("Encoding message type: Get Hint");
 
             MemoryStream stream = new MemoryStream();
+
+            EncodeShort(stream, messageType);
+            EncodeShort(stream, gameID);
 
             return stream.ToArray();
         }
 
         public override Message Decode(MemoryStream stream)
         {
-            logger.Debug("Decoding message");
-
-            NewGameMessage message = null;
-            //if (b != null)
-            //{
-            //    message = new NewGameMessage(client);
-            //    MemoryStream stream = new MemoryStream(b);
-            //    messageType = DecodeShort(stream);
-            //    logger.InfoFormat("Message Type: {0}", message.messageType);
-            //}
-
-            return message;
+            throw new NotImplementedException();
         }
 
         private static void EncodeShort(MemoryStream stream, short s)

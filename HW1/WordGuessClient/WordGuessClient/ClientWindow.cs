@@ -19,6 +19,7 @@ namespace WordGuessClient
         public static Receiver receiveMessage;
         public Thread receiveThread;
         private readonly UdpClient myUdpClient;
+        private ManualResetEvent threadReset = new ManualResetEvent(false);
 
         public WordGuessClient()
         {
@@ -61,7 +62,10 @@ namespace WordGuessClient
         }
         public short GetGameID()
         {
-            return Convert.ToInt16(gameIdLabel.Text);
+            if (gameIdLabel.Text.Length > 0)
+                return Convert.ToInt16(gameIdLabel.Text);
+            else
+                return -1;
         }
 
         public void SetHintText(string hint)
@@ -77,6 +81,16 @@ namespace WordGuessClient
         public void SetGameIdLabel(short id)
         {
             gameIdLabel.Text = id.ToString();
+        }
+
+        public void SetGuessTextBox(string hint)
+        {
+            guessTextbox.Text = hint;
+        }
+
+        public void SetNumCharLabel(short num)
+        {
+            numOfCharLabel.Text = num.ToString();
         }
 
         private void NewGameBtn_Click(object sender, EventArgs e)
@@ -100,6 +114,20 @@ namespace WordGuessClient
             receiveMessage.ReceiveMessage();
 
             Application.Exit();
+        }
+
+        private void hintBtn_Click(object sender, EventArgs e)
+        {
+            if (receiveThread.IsAlive)
+            {
+                receiveThread.Abort();
+                receiveThread.Join();
+            }
+            Sender sendMessage = new Sender(this, myUdpClient);
+            sendMessage.SendMessage(5);
+            receiveMessage.ReceiveMessage();
+            receiveThread = new Thread(new ThreadStart(receiveMessage.ReceiveMessage));
+            receiveThread.Start();
         }
     }
 }
