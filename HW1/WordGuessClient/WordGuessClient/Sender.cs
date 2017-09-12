@@ -34,8 +34,21 @@ namespace WordGuessClient
             Message message = null;
             if (server != null)
             {
-                if (messageType == 1)
-                    message = new NewGameMessage(client);
+                switch (messageType)
+                {
+                    case (short)1:
+                        message = new NewGameMessage(client);
+                        logger.Info("New Game Message Sent");
+                        break;
+                    case (short)7:
+                        message = new ExitMessage(client);
+                        logger.Info("Exit Message Sent");
+                        break;
+                    case (short)8:
+                        message = new AckMessage(client);
+                        logger.Info("Ack Message Sent");
+                        break;
+                }
 
                 byte[] b = message.Encode();
                 logger.Debug(b);

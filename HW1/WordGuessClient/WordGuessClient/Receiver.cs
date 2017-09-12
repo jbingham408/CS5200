@@ -14,7 +14,7 @@ namespace WordGuessClient
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(Receiver));
         private readonly UdpClient myUdpClient;
-        public Message message = null;
+        //public Message newMessage = null;
         private WordGuessClient client;
 
         public Receiver(UdpClient udpClient, WordGuessClient c)
@@ -40,7 +40,7 @@ namespace WordGuessClient
             bool endReceive = false;
             while (!endReceive)
             {
-                logger.Debug("Entering Receive");
+                logger.Info("---Checking for message---");
                 IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Any, 0);
                 byte[] b = null;
 
@@ -63,15 +63,29 @@ namespace WordGuessClient
                     switch (messageType)
                     {
                         case (short)2:
-                            message = new GameDefMessage(client);
-                            message.Decode(stream);
+                            GameDefMessage gameDefMessage = new GameDefMessage(client);
+                            gameDefMessage.Decode(stream);
                             endReceive = true;
+                            break;
+                        case (short)8:
+                            AckMessage ackMessage = new AckMessage(client);
+                            ackMessage.Decode(stream);
+                            if (ackMessage.GetCorrectGame())
+                                endReceive = true;
+                            break;
+                        case (short)10:
+                            HeartBeatMessage heartBeat = new HeartBeatMessage(client);
+                            heartBeat.Decode(stream);
+                            if(heartBeat.GetCorrectGame())
+                            {
+                                Sender sender = new Sender(client, myUdpClient);
+                                sender.SendMessage(8);
+                            }
                             break;
                     }
                 }
                 else
                     logger.Debug("No message received");
-                logger.Debug("Leaving Receive");
             }
         }
 

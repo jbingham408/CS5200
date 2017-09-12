@@ -12,7 +12,8 @@ namespace WordGuessClient
     public abstract class Message
     {
 
-
+        private short messageType;
+        private short gameID { get; set; }
         public abstract byte[] Encode();
 
         public abstract Message Decode(MemoryStream stream);

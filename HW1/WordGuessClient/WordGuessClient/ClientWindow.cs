@@ -11,6 +11,7 @@ using System.Threading;
 using System.Net;
 using System.Net.Sockets;
 
+
 namespace WordGuessClient
 {
     public partial class WordGuessClient : Form
@@ -58,6 +59,10 @@ namespace WordGuessClient
         {
             return aliasTextBox.Text;
         }
+        public short GetGameID()
+        {
+            return Convert.ToInt16(gameIdLabel.Text);
+        }
 
         public void SetHintText(string hint)
         {
@@ -89,6 +94,11 @@ namespace WordGuessClient
                 receiveThread.Abort();
                 receiveThread.Join();
             }
+
+            Sender sendMessage = new Sender(this, myUdpClient);
+            sendMessage.SendMessage(7);
+            receiveMessage.ReceiveMessage();
+
             Application.Exit();
         }
     }

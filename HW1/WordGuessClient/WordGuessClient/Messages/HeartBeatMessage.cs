@@ -13,29 +13,31 @@ namespace WordGuessClient
     {
         private short messageType { get; set; }
         private short gameID { get; set; }
+        private WordGuessClient client;
+        private bool correctGame;
 
         private static readonly ILog logger = LogManager.GetLogger(typeof(HeartBeatMessage));
+
+        public HeartBeatMessage(WordGuessClient c)
+        {
+            messageType = 10;
+            client = c;
+            gameID = client.GetGameID();
+        }
         public override byte[] Encode()
         {
-            logger.Debug("Encoding message");
-
-            MemoryStream stream = new MemoryStream();
-
-            return stream.ToArray();
+            throw new NotImplementedException();
         }
 
         public override Message Decode(MemoryStream stream)
         {
             logger.Debug("Decoding message");
 
-            NewGameMessage message = null;
-            //if (b != null)
-            //{
-            //    message = new NewGameMessage(client);
-            //    MemoryStream stream = new MemoryStream(b);
-            //    messageType = DecodeShort(stream);
-            //    logger.InfoFormat("Message Type: {0}", message.messageType);
-            //}
+            HeartBeatMessage message = new HeartBeatMessage(client);
+            message.gameID = DecodeShort(stream);
+            if (message.gameID == this.gameID)
+                correctGame = true;
+            logger.Info("Message Type: HeartBeat");
 
             return message;
         }
@@ -75,6 +77,10 @@ namespace WordGuessClient
                 message = Encoding.BigEndianUnicode.GetString(b, 0, b.Length);
             }
             return message;
+        }
+        public bool GetCorrectGame()
+        {
+            return correctGame;
         }
     }
 }

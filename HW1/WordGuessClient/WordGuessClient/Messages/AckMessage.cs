@@ -13,13 +13,14 @@ namespace WordGuessClient
     {
         private short messageType { get; set; }
         private short gameID { get; set; }
+        private bool correctGame = false;
         private WordGuessClient client;
         private static readonly ILog logger = LogManager.GetLogger(typeof(AckMessage));
 
-        public AckMessage(WordGuessClient c, short id)
+        public AckMessage(WordGuessClient c)
         {
             client = c;
-            gameID = id;
+            gameID = client.GetGameID();
             messageType = 8;
         }
         public override byte[] Encode()
@@ -37,16 +38,12 @@ namespace WordGuessClient
         public override Message Decode(MemoryStream stream)
         {
             logger.Debug("Decoding message");
-            short id = 0;
 
-            AckMessage message = null;
-           // if (b != null)
-           // {
-                //MemoryStream stream = new MemoryStream(b);
-                id = DecodeShort(stream);
-                message = new AckMessage(client, id);
-                logger.Info("Message Type: Ack");
-           // }
+            AckMessage message = new AckMessage(client);
+            message.gameID = DecodeShort(stream);
+            if (message.gameID == this.gameID)
+                correctGame = true;
+            logger.Info("Message Type: Ack");
 
             return message;
         }
@@ -64,6 +61,11 @@ namespace WordGuessClient
             if (numOfBytes != b.Length)
                 throw new ApplicationException("Decode Short Failed");
             return IPAddress.NetworkToHostOrder(BitConverter.ToInt16(b, 0));
+        }
+
+        public bool GetCorrectGame()
+        {
+            return correctGame;
         }
     }
 }
