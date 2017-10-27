@@ -1,0 +1,12 @@
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\obj\Debug\WordGuessClient.csprojResolveAssemblyReference.cache
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\obj\Debug\WordGuessClient.WordGuessClient.resources
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\obj\Debug\WordGuessClient.Properties.Resources.resources
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\obj\Debug\WordGuessClient.csproj.GenerateResource.Cache
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\obj\Debug\WordGuessClient.csproj.CoreCompileInputs.cache
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\bin\Debug\WordGuessClient.exe.config
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\bin\Debug\WordGuessClient.exe
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\bin\Debug\WordGuessClient.pdb
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\bin\Debug\log4net.dll
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\bin\Debug\log4net.xml
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\obj\Debug\WordGuessClient.exe
+C:\Users\Jason\Documents\School\CS5200 Distributed Systems\Homework\cs5200\HW1\WordGuessClient\WordGuessClient\obj\Debug\WordGuessClient.pdb

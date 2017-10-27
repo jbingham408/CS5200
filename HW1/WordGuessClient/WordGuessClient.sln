@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordGuessClient", "WordGuessClient\WordGuessClient.csproj", "{7044BE54-5D3F-4F50-957E-237C3999C55F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordGuessClientTest", "WordGuessClientTest\WordGuessClientTest.csproj", "{A9933F5C-3487-4C01-86EC-12F5C4BFA2F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7044BE54-5D3F-4F50-957E-237C3999C55F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7044BE54-5D3F-4F50-957E-237C3999C55F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7044BE54-5D3F-4F50-957E-237C3999C55F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9933F5C-3487-4C01-86EC-12F5C4BFA2F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9933F5C-3487-4C01-86EC-12F5C4BFA2F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9933F5C-3487-4C01-86EC-12F5C4BFA2F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9933F5C-3487-4C01-86EC-12F5C4BFA2F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

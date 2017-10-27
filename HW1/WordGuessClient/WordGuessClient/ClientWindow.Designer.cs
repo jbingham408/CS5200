@@ -1,6 +1,6 @@
 ﻿namespace WordGuessClient
 {
-    partial class WordGuessClient
+    public partial class WordGuessClient
     {
         /// <summary>
         /// Required designer variable.
@@ -44,6 +44,8 @@
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.NewGameBtn = new System.Windows.Forms.Button();
             this.GamePanel = new System.Windows.Forms.Panel();
+            this.incorrectLabel = new System.Windows.Forms.TextBox();
+            this.numOfCharLabel = new System.Windows.Forms.Label();
             this.guessTextbox = new System.Windows.Forms.TextBox();
             this.definitionTextBox = new System.Windows.Forms.TextBox();
             this.hintTextBox = new System.Windows.Forms.TextBox();
@@ -53,6 +55,11 @@
             this.guessBtn = new System.Windows.Forms.Button();
             this.hintBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
+            this.gameIdLabel = new System.Windows.Forms.Label();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.scoreLabel = new System.Windows.Forms.Label();
+            this.playerScoreLabel = new System.Windows.Forms.Label();
+            this.errorTextBox = new System.Windows.Forms.TextBox();
             this.PlayerInfoGroup.SuspendLayout();
             this.addressGroup.SuspendLayout();
             this.GamePanel.SuspendLayout();
@@ -158,6 +165,7 @@
             this.portTextBox.Name = "portTextBox";
             this.portTextBox.Size = new System.Drawing.Size(163, 22);
             this.portTextBox.TabIndex = 3;
+            this.portTextBox.Text = "12001";
             // 
             // portLabel
             // 
@@ -183,7 +191,7 @@
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(163, 22);
             this.addressTextBox.TabIndex = 0;
-            this.addressTextBox.Text = "te";
+            this.addressTextBox.Text = "127.0.0.1";
             // 
             // NewGameBtn
             // 
@@ -193,10 +201,15 @@
             this.NewGameBtn.TabIndex = 2;
             this.NewGameBtn.Text = "New Game";
             this.NewGameBtn.UseVisualStyleBackColor = true;
+            this.NewGameBtn.Click += new System.EventHandler(this.NewGameBtn_Click);
             // 
             // GamePanel
             // 
             this.GamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GamePanel.Controls.Add(this.playerScoreLabel);
+            this.GamePanel.Controls.Add(this.scoreLabel);
+            this.GamePanel.Controls.Add(this.incorrectLabel);
+            this.GamePanel.Controls.Add(this.numOfCharLabel);
             this.GamePanel.Controls.Add(this.guessTextbox);
             this.GamePanel.Controls.Add(this.definitionTextBox);
             this.GamePanel.Controls.Add(this.hintTextBox);
@@ -210,12 +223,33 @@
             this.GamePanel.Size = new System.Drawing.Size(602, 261);
             this.GamePanel.TabIndex = 3;
             // 
+            // incorrectLabel
+            // 
+            this.incorrectLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.incorrectLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.incorrectLabel.Enabled = false;
+            this.incorrectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.incorrectLabel.ForeColor = System.Drawing.Color.Red;
+            this.incorrectLabel.Location = new System.Drawing.Point(405, 221);
+            this.incorrectLabel.Name = "incorrectLabel";
+            this.incorrectLabel.Size = new System.Drawing.Size(182, 29);
+            this.incorrectLabel.TabIndex = 9;
+            // 
+            // numOfCharLabel
+            // 
+            this.numOfCharLabel.AutoSize = true;
+            this.numOfCharLabel.Location = new System.Drawing.Point(445, 32);
+            this.numOfCharLabel.Name = "numOfCharLabel";
+            this.numOfCharLabel.Size = new System.Drawing.Size(0, 17);
+            this.numOfCharLabel.TabIndex = 8;
+            // 
             // guessTextbox
             // 
             this.guessTextbox.Location = new System.Drawing.Point(83, 195);
             this.guessTextbox.Name = "guessTextbox";
             this.guessTextbox.Size = new System.Drawing.Size(316, 22);
             this.guessTextbox.TabIndex = 7;
+            this.guessTextbox.Enter += new System.EventHandler(this.guessTextbox_Enter);
             // 
             // definitionTextBox
             // 
@@ -269,15 +303,17 @@
             this.guessBtn.TabIndex = 1;
             this.guessBtn.Text = "Make Guess";
             this.guessBtn.UseVisualStyleBackColor = true;
+            this.guessBtn.Click += new System.EventHandler(this.guessBtn_Click);
             // 
             // hintBtn
             // 
-            this.hintBtn.Location = new System.Drawing.Point(445, 30);
+            this.hintBtn.Location = new System.Drawing.Point(445, 74);
             this.hintBtn.Name = "hintBtn";
             this.hintBtn.Size = new System.Drawing.Size(102, 23);
             this.hintBtn.TabIndex = 0;
             this.hintBtn.Text = "Get Hint";
             this.hintBtn.UseVisualStyleBackColor = true;
+            this.hintBtn.Click += new System.EventHandler(this.hintBtn_Click);
             // 
             // exitBtn
             // 
@@ -287,12 +323,64 @@
             this.exitBtn.TabIndex = 4;
             this.exitBtn.Text = "Quit";
             this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
+            // gameIdLabel
+            // 
+            this.gameIdLabel.AutoSize = true;
+            this.gameIdLabel.Location = new System.Drawing.Point(609, 268);
+            this.gameIdLabel.Name = "gameIdLabel";
+            this.gameIdLabel.Size = new System.Drawing.Size(0, 17);
+            this.gameIdLabel.TabIndex = 5;
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(536, 268);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(67, 17);
+            this.idLabel.TabIndex = 6;
+            this.idLabel.Text = "Game ID:";
+            // 
+            // scoreLabel
+            // 
+            this.scoreLabel.AutoSize = true;
+            this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreLabel.Location = new System.Drawing.Point(455, 100);
+            this.scoreLabel.Name = "scoreLabel";
+            this.scoreLabel.Size = new System.Drawing.Size(83, 29);
+            this.scoreLabel.TabIndex = 10;
+            this.scoreLabel.Text = "Score:";
+            this.scoreLabel.Visible = false;
+            // 
+            // playerScoreLabel
+            // 
+            this.playerScoreLabel.AutoSize = true;
+            this.playerScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playerScoreLabel.Location = new System.Drawing.Point(474, 129);
+            this.playerScoreLabel.Name = "playerScoreLabel";
+            this.playerScoreLabel.Size = new System.Drawing.Size(43, 48);
+            this.playerScoreLabel.TabIndex = 11;
+            this.playerScoreLabel.Text = "0";
+            this.playerScoreLabel.Visible = false;
+            // 
+            // errorTextBox
+            // 
+            this.errorTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.errorTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.errorTextBox.Location = new System.Drawing.Point(301, 573);
+            this.errorTextBox.Name = "errorTextBox";
+            this.errorTextBox.Size = new System.Drawing.Size(240, 15);
+            this.errorTextBox.TabIndex = 7;
             // 
             // WordGuessClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 622);
+            this.Controls.Add(this.errorTextBox);
+            this.Controls.Add(this.idLabel);
+            this.Controls.Add(this.gameIdLabel);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.GamePanel);
             this.Controls.Add(this.NewGameBtn);
@@ -307,6 +395,7 @@
             this.GamePanel.ResumeLayout(false);
             this.GamePanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -337,6 +426,13 @@
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.TextBox guessTextbox;
         private System.Windows.Forms.TextBox definitionTextBox;
+        private System.Windows.Forms.Label gameIdLabel;
+        private System.Windows.Forms.Label numOfCharLabel;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.TextBox incorrectLabel;
+        private System.Windows.Forms.Label playerScoreLabel;
+        private System.Windows.Forms.Label scoreLabel;
+        private System.Windows.Forms.TextBox errorTextBox;
     }
 }
 

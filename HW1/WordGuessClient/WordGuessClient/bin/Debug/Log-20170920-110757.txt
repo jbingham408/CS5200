@@ -1,0 +1,10 @@
+2017-09-20 11:07:57,669 [1] INFO  WordGuessClient.Program - Starting Client
+2017-09-20 11:07:57,701 [1] DEBUG WordGuessClient.Sender - 127.0.0.1:12001
+2017-09-20 11:08:15,305 [1] INFO  WordGuessClient.NewGameMessage - Encoding Message Type: New Game
+2017-09-20 11:08:15,305 [1] INFO  WordGuessClient.NewGameMessage - A#: A01944907
+2017-09-20 11:08:15,305 [1] INFO  WordGuessClient.NewGameMessage - Last Name: BIngham
+2017-09-20 11:08:15,305 [1] INFO  WordGuessClient.NewGameMessage - First Name: Jason
+2017-09-20 11:08:15,320 [1] INFO  WordGuessClient.NewGameMessage - Alias: jbing
+2017-09-20 11:08:15,336 [1] DEBUG WordGuessClient.Sender - Byte[] {0, 1, 0, 18, 0, 65, 0, 48, 0, 49, 0, 57, 0, 52, 0, 52, 0, 57, 0, 48, 0, 55, 0, 14, 0, 66, 0, 73, 0, 110, 0, 103, 0, 104, 0, 97, 0, 109, 0, 10, 0, 74, 0, 97, 0, 115, 0, 111, 0, 110, 0, 10, 0, 106, 0, 98, 0, 105, 0, 110, 0, 103}
+2017-09-20 11:08:15,336 [1] INFO  WordGuessClient.Sender - 62 bytes sent out of 62
+2017-09-20 11:08:15,336 [1] INFO  WordGuessClient.Receiver - ---Checking for message---
